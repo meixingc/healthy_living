@@ -1,38 +1,212 @@
+/* imports */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+
+/* html */
+html {
+  background: linear-gradient(-70deg, #fff9c5, #ffffff, #dbffdb);
+  background-size: 400% 400%;
+  animation: gradient-bg 5s ease infinite;
+}
+@keyframes gradient-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* App.js */
 .App {
+  font-family: 'Playfair Display', serif;
+  margin: 1%;
+}
+
+
+/* Header.js */
+.Header {
+  border-bottom: solid 1px black;
+  margin-top: -10px;;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 175px;
+}
+.title {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title-logo {
+  margin-right: 20px;
+  width: 100px;
+  height: 100%;
+} 
+
+
+/* Nav.js */
+.Nav {
+  font-size: 20px;
+  margin: 0px 20% 10px 20%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.section-link {
+  text-align: center;
+  width: 100px;
+  text-decoration: none;
+  color: black;
+}
+.section-link:hover {
+  font-size: 22px;
+}
+
+
+/* Home.js */
+.Home {
   text-align: center;
 }
+.welcome {
+  font-size: 40px;
+  margin: 100px;
+  margin-bottom: 30px;
+}
+.use-options {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-evenly;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Meals.js */
+.Meals {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: 190px 190px 190px 190px;
+  justify-content: center;
+  align-items: center;
+}
+.meal-category {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.category-img {
+  width: 100px;
+}
+.category-link {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+.category-link:hover {
+  font-size: 22px;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* MealsByCategory.js */
+.MealsByCategory {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.back-to-meals {
+  margin: 30px;
+  font-size: 20px;
+}
+.list-meals {
+  height: 700px;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  text-align: center;
+}
+.list-meals::-webkit-scrollbar {
+  display: none;
+}
+.meal{
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 600px;
+  border: solid 1px black;
+}
+.meal-img {
+  width: 200px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Meal.js */
+/* .meal-all {
+  margin: 30px;
 }
+.meal {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px black;
+  margin: 10px 20px 10px 20px;
+}
+.meal-imgs {
+  width: 30%;
+}
+.meal-img {
+  margin-right: 30px;
+  width: 300px;
+}
+.meal-info {
+  display: flex;
+}
+.ingredients-section {
+  border: solid 1px black;
+  margin: 30px 30px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ingredients-list {
+  text-align: left;
+  width: 200px;
+}
+
+.ingredient {
+  font-size: 15px;
+}
+
+.instructions-section {
+  text-align: left;
+}
+.other-info {
+  display: flex;
+}
+.other-info-right {
+  display: flex;
+  flex-direction: column;
+  margin: 40px;;
+} */
