@@ -22,53 +22,88 @@ function App() {
 
 
   // Meals
-    // for Meals.js
-      const [mealCategories, setMealCategories] = useState([])
-      const [chosenCategory, setChosenCategory] = useState(null)
-    // for MealsByCategory.js
-      const [categoryMeals, setCategoryMeals] = useState([])
-    //for Meal.js
-      const [selectedMeal, setSelectedMeal] = useState(null)
-      const [selectedMealInfo, setSelectedMealInfo] =useState(null)
+    // declare states
+      // for Meals.js
+        const initialMealSearchbarState = ''
+        const [mealSearchbar, setMealSearchbar] = useState(initialMealSearchbarState)
+        const [mealCategories, setMealCategories] = useState([])
+        const [chosenCategory, setChosenCategory] = useState(null)
+      // for MealsByCategory.js
+        const [categoryMeals, setCategoryMeals] = useState([])
+      // for MealSearch.js
+        const [mealSearch, setMealSearch] = useState(null)
+        const [mealSearchResults, setMealSearchResults] = useState([])
+      // for Meal.js
+        const [selectedMeal, setSelectedMeal] = useState(null)
+        const [selectedMealInfo, setSelectedMealInfo] =useState(null)
 
-    // Meals.js : gets meal categories
-      useEffect(() => {
-        const getMealCategories = async() => {
-          const response = await axios.get(`${MEALS_BASE_URL}categories.php`)
-          setMealCategories(response.data.categories)
+    // Meals.js : 
+      // changes meal searchbar value
+        const mealSearchbarChange = (e) => {
+          setMealSearchbar(e.target.value)
+          setMealSearch(mealSearchbar)
+          console.log('handlechange')
+       }
+      // meal searchbar submit 
+        const mealSearchbarSubmit = async function(e) {
+          e.preventDefault()
+          setMealSearchbar(initialMealSearchbarState)
+          console.log('handleSubmit')
         }
-        getMealCategories()
-      }, [])
-      // Meals.js : gets chosen meal category
-      const getChosenCategory = (category) => {
-        setChosenCategory(category)
-      }
+      // gets meal categories
+        useEffect(() => {
+          const getMealCategories = async() => {
+            const response = await axios.get(`${MEALS_BASE_URL}categories.php`)
+            setMealCategories(response.data.categories)
+          }
+          getMealCategories()
+        }, [])
+      // gets chosen meal category
+        const getChosenCategory = (category) => {
+          setChosenCategory(category)
+        }
 
-    // MealsByCategory.js : gets all meals in a category
-      useEffect(() => {
-        const getCategoryMeals = async() => {
-          const response = await axios.get(`${MEALS_BASE_URL}filter.php?c=${chosenCategory}`)
-          setCategoryMeals(response.data.meals)
+    // MealsByCategory.js 
+      // gets all meals in a category
+        useEffect(() => {
+          const getCategoryMeals = async() => {
+            const response = await axios.get(`${MEALS_BASE_URL}filter.php?c=${chosenCategory}`)
+            setCategoryMeals(response.data.meals)
+          }
+          if (chosenCategory) {
+            getCategoryMeals()
+          }
+        }, [chosenCategory])
+      // get selected meal
+        const getSelectedMeal = (meal) => {
+          setSelectedMeal(meal)
         }
-        if (chosenCategory) {
-          getCategoryMeals()
-        }
-      }, [chosenCategory])
 
-    // Meal.js : get selected meal
-      const getSelectedMeal = (meal) => {
-        setSelectedMeal(meal)
-      }
-    // Meal.js : get selected meal info
-      useEffect(() => {
-        const getSelectedMealInfo = async() => {
-          const response = await axios.get(`${MEALS_BASE_URL}lookup.php?i=${selectedMeal}`)
-          setSelectedMealInfo(response.data.meals)
-        }
-        if (selectedMeal) {
-          getSelectedMealInfo()
-        }
-      }, [selectedMeal])
+    // MealSearch.js
+      // gets meal search results
+        useEffect(() => {
+          const getMealSearchResults = async() => {
+            const response = await axios.get(`${MEALS_BASE_URL}search.php?s=${mealSearch}`)
+            setMealSearchResults(response.data.meals)
+          }
+          if (mealSearch) {
+            getMealSearchResults()
+            console.log(mealSearchResults)
+          }
+        }, [mealSearch])
+        
+
+    // Meal.js  
+      // get selected meal info
+        useEffect(() => {
+          const getSelectedMealInfo = async() => {
+            const response = await axios.get(`${MEALS_BASE_URL}lookup.php?i=${selectedMeal}`)
+            setSelectedMealInfo(response.data.meals)
+          }
+          if (selectedMeal) {
+            getSelectedMealInfo()
+          }
+        }, [selectedMeal])
 
 
 
@@ -84,7 +119,12 @@ function App() {
             categoryMeals={categoryMeals}
             getSelectedMeal={getSelectedMeal}
             selectedMeal={selectedMeal}
-            selectedMealInfo={selectedMealInfo}/>
+            selectedMealInfo={selectedMealInfo}
+            mealSearchbar={mealSearchbar}
+            mealSearchbarChange={mealSearchbarChange}
+            mealSearchbarSubmit={mealSearchbarSubmit}
+            mealSearch={mealSearch}
+            mealSearchResults={mealSearchResults}/>
     </div>
   );
 }

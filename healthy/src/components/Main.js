@@ -6,6 +6,7 @@ import Home from "./Home"
 // meal imports
 import Meals from "./meals/Meals"
 import MealsByCategory from "./meals/MealsByCategory"
+import MealSearch from "./meals/MealSearch"
 import Meal from "./meals/Meal"
 
 // workout imports
@@ -25,7 +26,11 @@ export default function Main(props) {
                 // Meals section
                     // Meals.js
                     <Route  exact path='/meals' 
-                            element={<Meals mealCategories={props.mealCategories} 
+                            element={<Meals mealSearchbar={props.mealSearchbar}
+                                            mealSearchbarChange={props.mealSearchbarChange}
+                                            mealSearchbarSubmit={props.mealSearchbarSubmit}
+                                            mealSearch={props.mealSearch}
+                                            mealCategories={props.mealCategories} 
                                             getChosenCategory={props.getChosenCategory}/>} />
                     // MealsByCategory.js
                     <Route  exact path='/meals/:category' 
@@ -33,6 +38,13 @@ export default function Main(props) {
                                                         getCategoryMeals={props.getCategoryMeals} 
                                                         categoryMeals={props.categoryMeals} 
                                                         getSelectedMeal={props.getSelectedMeal}/>} />
+                    // MealSearch.js
+                    <Route  exact path='/meals/search/:id' 
+                            element={<MealSearch    mealSearch={props.mealSearch}
+                                                    mealSearchbar={props.mealSearchbar}
+                                                    mealSearchbarChange={props.mealSearchbarChange}
+                                                    mealSearchbarSubmit={props.mealSearchbarSubmit}
+                                                    mealSearchResults={props.mealSearchResults}/>} />
                     // Meal.js
                     <Route  exact path={`/meals/${props.chosenCategory}/:id`} 
                             element={<Meal  selectedMeal={props.selectedMeal} 

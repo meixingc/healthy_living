@@ -31,7 +31,7 @@ html {
 /* Header.js */
 .Header {
   border-bottom: solid 1px black;
-  margin-top: -10px;;
+  margin-top: -30px;
   margin-left: 10%;
   margin-right: 10%;
   height: 175px;
@@ -87,6 +87,44 @@ html {
 
 /* Meals.js */
 .Meals {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.meal-search-bar {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+.meal-search-input {
+  text-align: center;
+  font-size: 15px;
+  width: 400px;
+  height: 20px;
+  box-shadow: 1px 1px 2px rgb(66, 66, 66);
+  border: none;
+}
+.meal-search-submit-ctn {
+  text-align: center;
+  background-color: white;
+  border: solid 1px black;
+  margin-left: 20px;
+  box-shadow: 1px 1px 2px rgb(66, 66, 66);
+
+}
+.meal-search-submit-ctn:hover {
+  padding: 1px;
+}
+.meal-search-submit {
+  padding-left: 5px;
+  padding-right: 5px;
+  text-decoration: none;
+}
+.meal-categories {
   text-align: center;
   display: grid;
   grid-template-columns: 200px 200px 200px 200px;
@@ -115,15 +153,21 @@ html {
 
 /* MealsByCategory.js */
 .MealsByCategory {
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .back-to-meals {
-  margin: 30px;
+  height: 30px;
+  color: black;
+  margin: 20px;
+  margin-bottom: 10px;
   font-size: 20px;
+  text-decoration: none;
+}
+.back-to-meals:hover {
+  font-size: 22px;
 }
 .list-meals {
   height: 700px;
@@ -131,82 +175,134 @@ html {
   -ms-overflow-style: none;
   scrollbar-width: none;
   text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
 }
 .list-meals::-webkit-scrollbar {
   display: none;
 }
 .meal{
-  padding: 15px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 600px;
-  border: solid 1px black;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  height: 225px;
 }
 .meal-img {
-  width: 200px;
+  margin: auto;
+  margin-top: 10px;
+  width: 150px;
+  border-radius: 20%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.meal-name {
+  font-size: 18px;
+  height: 70px;
+  width: 200px;
+  margin-top: 20px;
+  text-decoration: none;
+  color: black;
+}
+.meal-name:hover {
+  font-size: 19px;
+}
 
 
 /* Meal.js */
-/* .meal-all {
-  margin: 30px;
-}
-.meal {
-  display: flex;
-  align-items: center;
-  border-bottom: solid 1px black;
-  margin: 10px 20px 10px 20px;
-}
-.meal-imgs {
-  width: 30%;
-}
-.meal-img {
-  margin-right: 30px;
-  width: 300px;
-}
-.meal-info {
-  display: flex;
-}
-.ingredients-section {
-  border: solid 1px black;
-  margin: 30px 30px 0px 0px;
+.Meal {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
+.back-to-mealsbycategory {
+  height: 30px;
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+  margin: 20px;
+  margin-bottom: 15px;
+}
+.back-to-mealsbycategory:hover {
+  font-size: 22px;
+}
+.selected-info {
+  display: grid;
+  width: 700px;
+  height: 700px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  border-radius: 10%;
+}
+.selected-img {
+  border-radius: 10%;
+  margin: 30px;
+  width: 250px;
+}
+.selected-info-top-right {
+  margin-left: 10px;
+  margin-right: 30px;
+}
+.selected-name {
+  font-size: 25px;
+}
+.selected-area {
+  font-size: 20px;
+  font-weight: normal;
+}
+.selected-tutorial-link {
+  font-size: 20px;
+  height: 30px;
+  width: 10px;
+  text-decoration: none;
+  color: red;
+}
+.selected-tutorial-link:hover {
+  font-size: 22px;
+}
+.selected-info-bottom-left {
+  margin: 30px;
+  margin-top: -30px;
+}
+.selected-ingredients {
+  text-align: center;
+}
 .ingredients-list {
   text-align: left;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
   width: 200px;
+  height: 320px;
 }
-
-.ingredient {
-  font-size: 15px;
+.ingredients-list::-webkit-scrollbar {
+  display: none;
 }
-
-.instructions-section {
-  text-align: left;
+.selected-info-bottom-right {
+  margin-top: -90px;
+  margin-right: 30px;
+  
 }
-.other-info {
+.selected-instructions-title {
+  text-align: center;
+}
+.selected-instructions {
+  margin-top: -10px;
+  width: 350px;
+  height: 370px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border-radius: 10%;
+  padding: 10px;
+}
+.selected-instructions::-webkit-scrollbar {
+  display: none;
+}
+.loading {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
 }
-.other-info-right {
-  display: flex;
-  flex-direction: column;
-  margin: 40px;;
-} */

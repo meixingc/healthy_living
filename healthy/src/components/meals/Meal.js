@@ -64,38 +64,36 @@ export default function Meal(props) {
                 ingredients.push(`${props.selectedMealInfo[0].strMeasure20} ${props.selectedMealInfo[0].strIngredient20}`)
             }
         return (
-            <div className='meal-all'>
-                <Link to={`/meals/${props.chosenCategory}`}> Back </Link>
-                <h1>{props.selectedMealInfo[0].strMeal}</h1>
-                <div className='other-info'>
-                    <img src={props.selectedMealInfo[0].strMealThumb} className='meal-img'/>
-                    <div className='other-info-right'>
-                        <h3> Area : {props.selectedMealInfo[0].strArea} </h3>
-                        <a href={props.selectedMealInfo[0].strYoutube}> Youtube Tutorial </a>
-                    </div>     
-                </div>
-                <div className='meal-info'>
-                    <div className='ingredients-section'>
-                        <h2> Ingredients </h2>
+            <div className='Meal'>
+                <Link to={`/meals/${props.chosenCategory}`} className='back-to-mealsbycategory'> Back </Link>
+                <div className='selected-info'>
+                    <img src={props.selectedMealInfo[0].strMealThumb} className='selected-img'/>
+                    <div className='selected-info-top-right'>
+                        <h1 className='selected-name'>{props.selectedMealInfo[0].strMeal}</h1>
+                        <h3 className='selected-area'> Area : {props.selectedMealInfo[0].strArea} </h3>
+                        <a href={props.selectedMealInfo[0].strYoutube} className='selected-tutorial-link'> Tutorial </a>
+                    </div> 
+                    <div className='selected-info-bottom-left'>
+                        <h2 className='selected-ingredients'> Ingredients </h2>
                         <ul className='ingredients-list'>
-                        {
-                            ingredients.map((ingredient) => (
-                                <div key={ingredient} className='ingredient'>
-                                    <li>{ingredient}</li>
-                                </div>
-                            ))                   
-                        }
+                            {
+                                ingredients.map((ingredient) => (
+                                    <div key={ingredient} className='ingredient'>
+                                        <li>{ingredient}</li>
+                                    </div>
+                                ))                   
+                            }
                         </ul>
                     </div>
-                    <div className='instructions-section'>
-                        <h2> Instructions </h2>
-                        {props.selectedMealInfo[0].strInstructions}
+                    <div className='selected-info-bottom-right'>
+                        <h2 className='selected-instructions-title'> Instructions </h2>
+                        <div className='selected-instructions'>{props.selectedMealInfo[0].strInstructions}</div>
                     </div>
                 </div>
             </div>
         )
     }   
     else {
-        return <h1>Loading plz wait</h1>
+        return <h1 className='loading'>Loading...</h1>
     }
 }
