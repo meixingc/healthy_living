@@ -31,24 +31,24 @@ function App() {
       // for MealsByCategory.js
         const [categoryMeals, setCategoryMeals] = useState([])
       // for MealSearch.js
-        const [mealSearch, setMealSearch] = useState(null)
+        const [mealSearch, setMealSearch] = useState('')
         const [mealSearchResults, setMealSearchResults] = useState([])
+        const [selectedMealSearch, setSelectedMealSearch] = useState(null)
+        const [selectedMealSearchInfo, setSelectedMealSearchInfo] = useState([])
       // for Meal.js
         const [selectedMeal, setSelectedMeal] = useState(null)
         const [selectedMealInfo, setSelectedMealInfo] =useState(null)
 
-    // Meals.js : 
+    // Meals.js 
       // changes meal searchbar value
         const mealSearchbarChange = (e) => {
           setMealSearchbar(e.target.value)
-          setMealSearch(mealSearchbar)
-          console.log('handlechange')
+          setMealSearch(e.target.value)
        }
       // meal searchbar submit 
         const mealSearchbarSubmit = async function(e) {
           e.preventDefault()
           setMealSearchbar(initialMealSearchbarState)
-          console.log('handleSubmit')
         }
       // gets meal categories
         useEffect(() => {
@@ -88,10 +88,24 @@ function App() {
           }
           if (mealSearch) {
             getMealSearchResults()
-            console.log(mealSearchResults)
           }
-        }, [mealSearch])
-        
+        }, [mealSearch]) 
+      // get selected searched meal
+      const getSelectedMealSearch = (id) => {
+        setSelectedMealSearch(id)
+      }
+      // get selected searched meal info
+      useEffect(() => {
+        const getSelectedMealSearchInfo = async() => {
+          const response = await axios.get(`${MEALS_BASE_URL}lookup.php?i=${selectedMealSearch}`)
+          setSelectedMealSearchInfo(response.data.meals)
+        }
+        if (selectedMealSearch) {
+          getSelectedMealSearchInfo()
+        }
+        console.log( `slece ${selectedMealSearch}`)
+
+      }, [selectedMealSearch])
 
     // Meal.js  
       // get selected meal info
@@ -124,7 +138,10 @@ function App() {
             mealSearchbarChange={mealSearchbarChange}
             mealSearchbarSubmit={mealSearchbarSubmit}
             mealSearch={mealSearch}
-            mealSearchResults={mealSearchResults}/>
+            mealSearchResults={mealSearchResults}
+            getSelectedMealSearch={getSelectedMealSearch}
+            selectedMealSearch={selectedMealSearch}
+            selectedMealSearchInfo={selectedMealSearchInfo}/>
     </div>
   );
 }

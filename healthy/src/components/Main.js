@@ -6,8 +6,10 @@ import Home from "./Home"
 // meal imports
 import Meals from "./meals/Meals"
 import MealsByCategory from "./meals/MealsByCategory"
-import MealSearch from "./meals/MealSearch"
+import MealSearch from "./meals/search/MealSearch"
+import SearchErrorPage from "./meals/search/SearchErrorPage"
 import Meal from "./meals/Meal"
+import SelectedSearchMeal from "./meals/search/SelectedSearchMeal"
 
 // workout imports
 import Workouts from "./workouts/Workouts"
@@ -40,16 +42,21 @@ export default function Main(props) {
                                                         getSelectedMeal={props.getSelectedMeal}/>} />
                     // MealSearch.js
                     <Route  exact path='/meals/search/:id' 
-                            element={<MealSearch    mealSearch={props.mealSearch}
-                                                    mealSearchbar={props.mealSearchbar}
-                                                    mealSearchbarChange={props.mealSearchbarChange}
-                                                    mealSearchbarSubmit={props.mealSearchbarSubmit}
-                                                    mealSearchResults={props.mealSearchResults}/>} />
+                            element={<MealSearch    mealSearchResults={props.mealSearchResults}
+                                                    getSelectedMeal={props.getSelectedMeal}/>} />
+                    // SearchErrorPage.js
+                    <Route  exact path='/meals/search'
+                            element={<SearchErrorPage />} />
                     // Meal.js
                     <Route  exact path={`/meals/${props.chosenCategory}/:id`} 
                             element={<Meal  selectedMeal={props.selectedMeal} 
                                             selectedMealInfo={props.selectedMealInfo}
                                             chosenCategory={props.chosenCategory}/>} />
+                    // SelectedSearchMeal.js
+                    <Route  exact path={`/meals/search/${props.selectedMeal}`}
+                            element={<SelectedSearchMeal    mealSearch={props.mealSearch}
+                                                            selectedMeal={props.selectedMeal}
+                                                            selectedMealInfo={props.selectedMealInfo}/>} />
 
                 // Workouts section
                     // Workouts.js

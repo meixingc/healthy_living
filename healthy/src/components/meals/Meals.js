@@ -3,10 +3,10 @@ import { Link } from "react-router-dom"
 export default function Meals(props) {
     return (
         <div className='Meals'>
-            <form className='meal-search-bar' onSubmit={props.mealSearchbarSubmit}>
+            <form className='meal-search-bar' onSubmit={() => props.mealSearchbarSubmit}>
                 <input type='text' className='meal-search-input' value={props.mealSearchbar} placeholder='Search for Meals' onChange={props.mealSearchbarChange}/>
                 <div className='meal-search-submit-ctn'>
-                <Link to={`/meals/search/${props.mealSearch}`} type='submit' className='meal-search-submit'>Search</Link>
+                    <Link to={`/meals/search/${props.mealSearch}`} type='submit' className='meal-search-submit'>Search</Link>
                 </div>
             </form>
             <div className='meal-categories'>

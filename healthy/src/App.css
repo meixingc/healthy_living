@@ -208,6 +208,14 @@ html {
   font-size: 19px;
 }
 
+/* MealSearch */
+.MealSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 /* Meal.js */
 .Meal {
