@@ -105,10 +105,17 @@ function App() {
   // Workouts
     // declare states
       // Workout.js
+        const stuff = ['arms', 'legs', 'abs']
+
         const [allWorkouts, setAllWorkouts ] = useState([])
         const [workoutCategory, setWorkoutCategory] = useState([])
-        const [chosenWorkoutCategory, setChosenWorkoutCategory] = useState([])
-        const [chosenWorkoutId, setChosenWorkoutId] = useState(null)
+        const [chosenWorkoutCategory, setChosenWorkoutCategory] = useState(null)
+        const [chosenWorkoutId, setChosenWorkoutId] = useState('')
+        
+
+
+
+
       
     // Workout.js
       // gets all exercise
@@ -174,11 +181,12 @@ function App() {
         }, [allWorkouts])
       // get chosen category
         const getChosenWorkoutCategory = (chosen) => {
-            setChosenWorkoutId(workoutCategory[chosen][0].id)
+            setChosenWorkoutId(stuff[chosen])
+            console.log(stuff[chosen])
             setChosenWorkoutCategory(workoutCategory[chosen])
           console.log(workoutCategory[chosen][0].id)
         }
-
+        // workoutCategory[chosen][0].id
 
   return (
     <div className="App">

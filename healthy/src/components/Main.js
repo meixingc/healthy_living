@@ -10,6 +10,7 @@ import MealSearch from "./meals/search/MealSearch"
 import SearchErrorPage from "./meals/search/SearchErrorPage"
 import Meal from "./meals/Meal"
 import SelectedSearchMeal from "./meals/search/SelectedSearchMeal"
+import WorkoutCategory from "./workouts/WorkoutCategory"
 
 // workout imports
 import Workouts from "./workouts/Workouts"
@@ -67,7 +68,7 @@ export default function Main(props) {
                                                 chosenWorkoutCategory={props.chosenWorkoutCategory}
                                                 chosenWorkoutId={props.chosenWorkoutId}/>} />
                     <Route  exact path='/workouts/:id'    
-                            element={<WorkoutCategory />}
+                            element={<WorkoutCategory chosenWorkoutId={props.chosenWorkoutId}/>} />
                 // Trackers section
                 <Route exact path='/trackers' element={<Trackers />} />
             </Routes>
