@@ -5,7 +5,7 @@ export default function MealSearch(props) {
         return (
             <div className='MealSearch'>
                 <Link to='/meals' className='back-to-meals'> Back </Link>
-                <div className='search-meals'>
+                <div className='list-meals'>
                     {
                         props.mealSearchResults.map((meal) => (
                             <div key={meal.idMeal} className='meal'>
@@ -20,7 +20,7 @@ export default function MealSearch(props) {
     }
     else {
         return (
-            <div>
+            <div className='no-meal'>
                 <Link to='/meals' className='back-to-meals'> Back </Link>
                 <h1> Meal not found. </h1>
             </div>

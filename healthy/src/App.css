@@ -4,7 +4,8 @@
 
 /* html */
 html {
-  background: linear-gradient(-70deg, #fff9c5, #ffffff, #dbffdb);
+  overflow-y: hidden;
+  background: linear-gradient(-70deg, #ff7c7c, #ffc684, #fffda2, rgb(185, 255, 185) , rgb(176, 176, 255), rgb(255, 124, 255));
   background-size: 400% 400%;
   animation: gradient-bg 5s ease infinite;
 }
@@ -120,6 +121,7 @@ html {
   padding: 1px;
 }
 .meal-search-submit {
+  color: black;
   padding-left: 5px;
   padding-right: 5px;
   text-decoration: none;
@@ -208,12 +210,20 @@ html {
   font-size: 19px;
 }
 
+
 /* MealSearch */
 .MealSearch {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.no-meal {
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 

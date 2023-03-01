@@ -1,5 +1,6 @@
 import './App.css';
 import { MEALS_BASE_URL } from './global';
+import { WORKOUT_BASE_URL } from './global';
 import Header from './components/Header';
 import Main from './components/Main';
 import axios from 'axios';
@@ -33,8 +34,6 @@ function App() {
       // for MealSearch.js
         const [mealSearch, setMealSearch] = useState('')
         const [mealSearchResults, setMealSearchResults] = useState([])
-        const [selectedMealSearch, setSelectedMealSearch] = useState(null)
-        const [selectedMealSearchInfo, setSelectedMealSearchInfo] = useState([])
       // for Meal.js
         const [selectedMeal, setSelectedMeal] = useState(null)
         const [selectedMealInfo, setSelectedMealInfo] =useState(null)
@@ -89,24 +88,7 @@ function App() {
           if (mealSearch) {
             getMealSearchResults()
           }
-        }, [mealSearch]) 
-      // get selected searched meal
-      const getSelectedMealSearch = (id) => {
-        setSelectedMealSearch(id)
-      }
-      // get selected searched meal info
-      useEffect(() => {
-        const getSelectedMealSearchInfo = async() => {
-          const response = await axios.get(`${MEALS_BASE_URL}lookup.php?i=${selectedMealSearch}`)
-          setSelectedMealSearchInfo(response.data.meals)
-        }
-        if (selectedMealSearch) {
-          getSelectedMealSearchInfo()
-        }
-        console.log( `slece ${selectedMealSearch}`)
-
-      }, [selectedMealSearch])
-
+        }, [mealSearch])
     // Meal.js  
       // get selected meal info
         useEffect(() => {
@@ -120,7 +102,82 @@ function App() {
         }, [selectedMeal])
 
 
-
+  // Workouts
+    // declare states
+      // Workout.js
+        const [allWorkouts, setAllWorkouts ] = useState([])
+        const [workoutCategory, setWorkoutCategory] = useState([])
+        const [chosenWorkoutCategory, setChosenWorkoutCategory] = useState([])
+        const [chosenWorkoutId, setChosenWorkoutId] = useState(null)
+      
+    // Workout.js
+      // gets all exercise
+        useEffect(() => {
+          const getAllWorkouts = async() => {
+            const response = await axios.get(`${WORKOUT_BASE_URL}exerciseinfo/?format=json&limit=1156&offset=0`)
+            let list = []
+            response.data.results.map((item) => {
+              if (item.language.id == 2) {
+                list.push(item)
+              }
+            })
+            setAllWorkouts(list)
+          }
+          getAllWorkouts()
+        }, [])
+      // filter categories
+        useEffect(() => {
+          const getWorkoutCategory = () => {
+            let list = allWorkouts
+            let filteredList = []
+            let arms = [{id : 'arms'}]
+            let abs = [{id : 'abs'}]
+            let back = [{id : 'back'}]
+            let calves = [{id : 'calves'}]
+            let cardio = [{id : 'cardio'}]
+            let chest = [{id : 'chest'}]
+            let legs = [{id : 'legs'}]
+            let shoulders = [{id : 'shoulders'}]
+            list.map((item) => {
+              switch (item.category.id) {
+                case 10 :
+                  abs.push(item)
+                  break
+                case 8 : 
+                  arms.push(item)
+                  break
+                case 12 :
+                  back.push(item)
+                  break
+                case 14 :
+                  calves.push(item)
+                  break
+                case 15 :
+                  cardio.push(item)
+                  break
+                case 11 :
+                  chest.push(item)
+                  break
+                case 9 :
+                  legs.push(item)
+                  break
+                case 13 :
+                  shoulders.push(item)
+                  break
+                }
+              }
+            )
+            filteredList.push(arms, legs, abs, chest, back, shoulders, calves, cardio)
+            setWorkoutCategory(filteredList)
+          }
+          getWorkoutCategory()
+        }, [allWorkouts])
+      // get chosen category
+        const getChosenWorkoutCategory = (chosen) => {
+            setChosenWorkoutId(workoutCategory[chosen][0].id)
+            setChosenWorkoutCategory(workoutCategory[chosen])
+          console.log(workoutCategory[chosen][0].id)
+        }
 
 
   return (
@@ -139,9 +196,12 @@ function App() {
             mealSearchbarSubmit={mealSearchbarSubmit}
             mealSearch={mealSearch}
             mealSearchResults={mealSearchResults}
-            getSelectedMealSearch={getSelectedMealSearch}
-            selectedMealSearch={selectedMealSearch}
-            selectedMealSearchInfo={selectedMealSearchInfo}/>
+            allWorkouts={allWorkouts}
+            setWorkoutCategory={setWorkoutCategory}
+            workoutCategory={workoutCategory}
+            getChosenWorkoutCategory={getChosenWorkoutCategory}
+            chosenWorkoutCategory={chosenWorkoutCategory}
+            chosenWorkoutId={chosenWorkoutId}/>
     </div>
   );
 }

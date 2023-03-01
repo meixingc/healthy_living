@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom"
 
 export default function SelectedSearchMeal(props) {
-    console.log(props.selectedMealInfo)
     let ingredients = []
     if (props.selectedMeal && props.selectedMealInfo){
-        console.log(props.selectedMealInfo)
             if (props.selectedMealInfo[0].strIngredient1){
                 ingredients.push(`${props.selectedMealInfo[0].strMeasure1} ${props.selectedMealInfo[0].strIngredient1}`)
             }

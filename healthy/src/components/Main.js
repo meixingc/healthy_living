@@ -37,7 +37,6 @@ export default function Main(props) {
                     // MealsByCategory.js
                     <Route  exact path='/meals/:category' 
                             element={<MealsByCategory   chosenCategory={props.chosenCategory} 
-                                                        getCategoryMeals={props.getCategoryMeals} 
                                                         categoryMeals={props.categoryMeals} 
                                                         getSelectedMeal={props.getSelectedMeal}/>} />
                     // MealSearch.js
@@ -60,8 +59,15 @@ export default function Main(props) {
 
                 // Workouts section
                     // Workouts.js
-                    <Route exact path='/workouts' element={<Workouts />} />
-
+                    <Route  exact path='/workouts' 
+                            element={<Workouts  allWorkouts={props.allWorkouts}
+                                                setWorkoutCategory={props.setWorkoutCategory}
+                                                workoutCategory={props.workoutCategory}
+                                                getChosenWorkoutCategory={props.getChosenWorkoutCategory}
+                                                chosenWorkoutCategory={props.chosenWorkoutCategory}
+                                                chosenWorkoutId={props.chosenWorkoutId}/>} />
+                    <Route  exact path='/workouts/:id'    
+                            element={<WorkoutCategory />}
                 // Trackers section
                 <Route exact path='/trackers' element={<Trackers />} />
             </Routes>
